@@ -9,12 +9,12 @@ MAXWIDTH = 70
 
 # copy from docutils
 east_asian_widths = {
-    "W": 2,  # Wide
-    "F": 2,  # Full-width (wide)
-    "Na": 1,  # Narrow
-    "H": 1,  # Half-width (narrow)
-    "N": 1,  # Neutral (not East Asian, treated as narrow)
-    "A": 1,
+    "W": 2.5,  # Wide
+    "F": 2.5,  # Full-width (wide)
+    "Na": 2,  # Narrow
+    "H": 2,  # Half-width (narrow)
+    "N": 2,  # Neutral (not East Asian, treated as narrow)
+    "A": 2,
 }  # Ambiguous (s/b wide in East Asian context,
 # narrow otherwise, but that doesn't work)
 

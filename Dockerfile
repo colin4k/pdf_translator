@@ -3,7 +3,8 @@ FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_PREFER_BINARY=1 \
     CUDA_HOME=/usr/local/cuda-11.8 \
-    DEBCONF_NOWARNINGS=yes
+    DEBCONF_NOWARNINGS=yes 
+
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN apt-get update \
@@ -28,6 +29,7 @@ WORKDIR /app
 ADD . /app/
 
 RUN pip install -r requirements.txt
-RUN pip install "git+https://github.com/facebookresearch/detectron2.git"
+RUN pip install ./detectron2
+RUN pip install --upgrade openai
 
 ENTRYPOINT [ "python3", "server.py" ]

@@ -5,7 +5,7 @@ def system_prompt(from_lang, to_lang):
     p  = "You are an %s-to-%s translator. " % (from_lang, to_lang)
     p += "Keep all special characters and HTML tags as in the source text. Return only %s translation." % to_lang
     return p
-
+"""
 langs = [
     "Albanian",
     "Arabic",
@@ -93,23 +93,27 @@ langs = [
     "Welsh",
     "Wu"
 ]
-
+"""
+langs = [
+    "English",
+    "Chinese"
+]
 class TranslateOpenAIGPT(TranslateBase):
     def init(self, cfg: dict):
-        self.client = OpenAI(api_key=cfg['openai_api_key'])
+        self.client = OpenAI(api_key=cfg['openai_api_key'],base_url=cfg['base_url'])
 
     def get_languages(self):
         return langs
 
-    def translate(self, text: str, from_lang='ENGLISH', to_lang='SLOVENIAN') -> str:
+    def translate(self, text: str, from_lang='ENGLISH', to_lang='CHINESE') -> str:
         response = self.client.chat.completions.create(
-            model='gpt-4-1106-preview',
+            model='Qwen/Qwen2-7B-Instruct',
             temperature=0.2,
             messages=[
                 { 'role': 'system', 'content': system_prompt(from_lang, to_lang) },
                 { 'role': 'user', 'content': text },
             ]
         )
-
+        print(response)
         translated_text = response.choices[0].message.content
         return translated_text

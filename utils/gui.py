@@ -43,10 +43,10 @@ def create_gradio_app(langs):
 
             
             from_lang = gr.Dropdown(label='from language', choices=langs, value="English")
-            to_lang = gr.Dropdown(label='to language', choices=langs, value="Slovenian")
+            to_lang = gr.Dropdown(label='to language', choices=langs, value="Chinese")
             from_page = gr.Number(label='from page')
             to_page = gr.Number(label='to page')
-            both = gr.Checkbox(label='render side by side', value=True)
+            both = gr.Checkbox(label='render side by side', value=False)
 
             btn = gr.Button(value="convert")
             translated_file = gr.File(label="translated fie", file_types=[".pdf"])
